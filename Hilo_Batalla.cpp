@@ -3,7 +3,7 @@
 #include<process.h>
 #include<iostream>
 #include<string.h>
-
+#include "Jugador.cpp"
 #ifndef HILO_BATALLA_CPP
 #define HILO_BATALLA_CPP
 
@@ -15,8 +15,8 @@ class Hilo_Batalla{
 		
 		bool vive;
 		int espera;
-		string texto;
-	
+		Jugador* jugador;
+		
 	public:
 	
 		Hilo_Batalla(){
@@ -26,13 +26,14 @@ class Hilo_Batalla{
 			this->vive=vive;
 		}//Set del vive
 		
-		void setTexto(string texto){
-			this->texto=texto;
-		}//Set del texto
-		
 		void setEspera(int espera){
 			this->espera=espera;
-		}
+		}//Set del espera
+		
+		void setJugador(Jugador* jugador){
+			this->jugador=jugador;
+		}//Set del jugador
+		
 		void stop(){
 			vive=false;
 		}//Detiene el hilo
@@ -50,13 +51,26 @@ class Hilo_Batalla{
 			while(vive){
 				
 				Sleep(espera);
-				MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
+				
+				srand(time(0));
+				
+				int r = (rand() % 5) + 1;
+				
+				if(jugador->getPelear()==false){
+					
+					if(r>=4){
+						jugador->setPelear(true);
+					}
+				}
+				
 				if(!vive){
 					_endthread();
-				}//Corre mientras sea verdadero
+				}
 				
-			}//While que hace la tarea del hilo
+			}//While de ejecucion del hilo
 			
-		}//Metodo de correr estatico
+		}//Fin del metodo runner estatico
+		
+		
 };
 #endif

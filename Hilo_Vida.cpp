@@ -3,7 +3,7 @@
 #include<process.h>
 #include<iostream>
 #include<string.h>
-
+#include "Jugador.cpp"
 #ifndef HILO_VIDA_CPP
 #define HILO_VIDA_CPP
 
@@ -15,8 +15,8 @@ class Hilo_Vida{
 		
 		bool vive;
 		int espera;
-		string texto;
-	
+		Jugador* jugador;
+		
 	public:
 	
 		Hilo_Vida(){
@@ -26,16 +26,16 @@ class Hilo_Vida{
 			this->vive=vive;
 		}//Set del vive
 		
-		void setTexto(string texto){
-			this->texto=texto;
-		}//Set del texto
-		
 		void setEspera(int espera){
 			this->espera=espera;
 		}
 		void stop(){
 			vive=false;
 		}//Detiene el hilo
+		
+		void setJugador(Jugador* jugador){
+			this->jugador=jugador;
+		}//Set del usuario
 		
 		void run(){
 			_beginthread(&Hilo_Vida::runner,0,static_cast<void*>(this));
@@ -48,16 +48,16 @@ class Hilo_Vida{
 		void runnerEstatico(){
 			
 			while(vive){
-				
 				Sleep(espera);
-				MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
-				
+				if(jugador->getPelear()==false){
+					jugador->addVida();
+				}
 				if(!vive){
 					_endthread();
-				}//Corre mientras sea verdadero
-				
-			}//While que hace la tarea del hilo
+				}
+			}//Se ejecuta el hilo
 			
-		}//Metodo de correr estatico
+		}//Fin del correr estatico	
+		
 };
 #endif

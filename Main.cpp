@@ -24,10 +24,25 @@ int main(){
 	dinero.setVive(true);
 	dinero.setTexto("Gano +1 de dinero");
 	dinero.setEspera(7000);
-	dinero.run();
+	//dinero.run();
 	
+	//Creacion del hilo de la vida
+	Hilo_Vida vida;
+	vida.setVive(true);
+	vida.setTexto("Gano +1 de vida");
+	vida.setEspera(6000);
+	//vida.run();
+	
+	//Creacion del hilo de la batalla
+	Hilo_Batalla batalla;
+	batalla.setVive(true);
+	batalla.setTexto("Se encontro una batalla");
+	batalla.setEspera(10000);
+	batalla.run();
+
 	while(true){
-		
+				
+		//Variable de control del menu
 		int op;
 		
 		cout<<"Menu\n\n\n";
@@ -38,23 +53,35 @@ int main(){
 		cin>>op;
 		cout<<"\n\n\n";
 		
+		if(dinero.getDinero()==1){
+			jugador.setDinero(jugador.getDinero()+1);
+			dinero.setDinero(0);
+		}//If auxilar de los datos del jugador
+		
+		if(vida.getVida()==1){
+			jugador.setVida(jugador.getVida()+1);
+			vida.setVida(0);
+		}//If auxilar de los datos del jugador
+		
 		switch(op){
 			
 			case 1:
-				
-				if(dinero.getDinero()==1){
-					jugador.setDinero(jugador.getDinero()+1);
-					jugador.print();
-					dinero.setDinero(0);
+				jugador.print();
+			break;
+			
+			case 2:
+				if(jugador.getDinero()>0){
+					jugador.setVida(jugador.getVida()+1);
+					jugador.setDinero(jugador.getDinero()-1);	
 				}else{
-					jugador.print();
-				}//If auxilar de los datos del jugador
-				
+					cout<<"No tiene el dinero necesario para curar mas vida\n\n\n";
+				}//Fin del if para curar la vida del jugador	
 			break;
 			
 			case 3:
 				exit(0);
 				dinero.stop();
+				vida.stop();
 			break;
 			
 			default:
@@ -68,3 +95,4 @@ int main(){
 	return 0;
 	
 }//Fin del main
+
