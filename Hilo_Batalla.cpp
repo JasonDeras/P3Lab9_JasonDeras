@@ -50,7 +50,7 @@ class Hilo_Batalla{
 			while(vive){
 				
 				Sleep(espera);
-				
+				MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
 				if(!vive){
 					_endthread();
 				}//Corre mientras sea verdadero

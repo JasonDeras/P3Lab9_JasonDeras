@@ -49,9 +49,8 @@ class Hilo_Vida{
 			
 			while(vive){
 				
-				MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
-				
 				Sleep(espera);
+				MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
 				
 				if(!vive){
 					_endthread();

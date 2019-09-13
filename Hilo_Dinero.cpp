@@ -3,7 +3,6 @@
 #include<process.h>
 #include<iostream>
 #include<string.h>
-
 #ifndef HILO_DINERO_CPP
 #define HILO_DINERO_CPP
 
@@ -16,10 +15,12 @@ class Hilo_Dinero{
 		bool vive;
 		int espera;
 		string texto;
-	
+		int dinero;//Variable para sumar el dinero del jugador
+		
 	public:
 	
 		Hilo_Dinero(){
+			dinero=0;
 		}//Constructor simple
 
 		void setVive(bool vive){
@@ -30,9 +31,22 @@ class Hilo_Dinero{
 			this->texto=texto;
 		}//Set del texto
 		
+		string getTexto(){
+			return texto;
+		}//Get del texto
+		
+		void setDinero(int dinero){
+			this->dinero=dinero;
+		}//Set del dinero del jugador despues de 7 segundos
+		
+		int getDinero(){
+			return dinero;
+		}//Get del dinero para del jugador despues de los 7 segundos
+		
 		void setEspera(int espera){
 			this->espera=espera;
-		}
+		}//Set del expera
+		
 		void stop(){
 			vive=false;
 		}//Detiene el hilo
@@ -49,10 +63,11 @@ class Hilo_Dinero{
 			
 			while(vive){
 				
-				MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
 				
 				Sleep(espera);
-				
+				//MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
+				cout<<texto;
+				dinero++;
 				if(!vive){
 					_endthread();
 				}//Corre mientras sea verdadero

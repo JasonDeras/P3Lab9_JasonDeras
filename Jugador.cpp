@@ -37,7 +37,7 @@ class Jugador{
         	this->dinero=dinero;
         }//Set del dinero
              
-        int getCuenta(){
+        int getDinero(){
             return dinero;
         }//Get del dinero
              
@@ -70,7 +70,6 @@ class Jugador{
         	cout<<"Vida: "<<vida<<endl;
         	cout<<"Vida Maxima: "<<vida_maxima<<endl;
         	cout<<"Nivel: "<<nivel<<endl;
-			cout<<"Clase cursadas"<<endl;
 			cout<<"\n\n\n\n";
         }//Metodo print 
         
