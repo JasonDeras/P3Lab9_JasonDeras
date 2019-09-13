@@ -4,12 +4,12 @@
 #include<iostream>
 #include<string.h>
 
-#ifndef HILO_DINERO_CPP
-#define HILO_DINERO_CPP
+#ifndef HILO_VIDA_CPP
+#define HILO_VIDA_CPP
 
 using namespace std;
 
-class Hilo_Dinero{
+class Hilo_Vida{
 	
 	private:
 		
