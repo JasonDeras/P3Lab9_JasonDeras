@@ -4,8 +4,8 @@
 #include<iostream>
 #include<string.h>
 
-#ifndef HILO_VIDA_CPP
-#define HILO_VIDA_CPP
+#ifndef HILO_BATALLA_CPP
+#define HILO_BATALLA_CPP
 
 using namespace std;
 
