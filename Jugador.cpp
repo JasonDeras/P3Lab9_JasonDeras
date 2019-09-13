@@ -12,112 +12,69 @@ class Jugador{
 	
       private:
       	
-	   string cuenta;
-	   string nombre;
-	   string carrera;
-	   string usuario;
-	   string password; 
-	   string rol;
-	   vector<Clase*>cursadas;
+	  	int dinero;
+		int vida;
+ 		int vida_maxima;
+		int nivel;
 	    
       public:
       	
-        Alumno(){
-        	cuenta="";
-        	nombre="";
-        	carrera="";
-        	usuario="";
-        	password="";
-        	rol="";
-		}//Fin del constructor de la red
+        Jugador(){
+        	dinero=0;
+        	vida=1;
+        	vida_maxima=3;
+        	nivel=1;
+		}//Constructor vacio
 			             
-        Alumno(string cuenta,string nombre,string carrera,string usuario,string password,string rol){
-        	this->cuenta.assign(cuenta);
-			this->nombre.assign(nombre);	
-			this->usuario.assign(usuario);		
-			this->password.assign(password);	
-			this->rol.assign(rol);		              
-        }//Fin del constructor sobrecargado
+        Jugador(int dinero,int vida,int vida_maxima,int nivel){
+        	this->dinero=dinero;
+			this->vida=vida;
+			this->vida_maxima=vida_maxima;
+			this->nivel=nivel;	              
+        }//Constructor sobrecargado
              
-        void setCuenta(string cuenta){
-            this->cuenta.assign(cuenta);
-        }//Set de la cuenta
+        void setDinero(int dinero){
+        	this->dinero=dinero;
+        }//Set del dinero
              
-        string getCuenta(){
-            return this->cuenta;
-        }//Set de la cuenta
+        int getCuenta(){
+            return dinero;
+        }//Get del dinero
              
-        void setNombre(string nombre){
-            this->nombre.assign(nombre);
-        }//Set del nombre
+        void setVida(int vida){
+            this->vida=vida;
+        }//Set de la vida
              
-        string getNombre(){
-            return this->nombre;
-        }//Get del nombre
+        int Vida(){
+            return vida;
+        }//Get de la vida
         
-		void setCarrera(string carrera){
-        	this->carrera.assign(carrera);
-        }//Get de la carrera
+		void setVida_Maxima(int vida_maxima){
+        	this->vida_maxima=vida_maxima;
+        }//Set de la vida maxima
              
-        string getCarrera(){
-            return this->carrera;
-        }//Get de la carrera
+        int getVida_Maxima(){
+            return vida_maxima;
+        }//Get de la vida maxima
 		
-		void setUsuario(string usuario){
-            this->usuario.assign(usuario);
-        }//Set del usuario
+		void setNivel(int nivel){
+            this->nivel=nivel;
+        }//Set del nivel
              
-        string getUsuario(){
-            return this->usuario;
-        }//Get del usuario
-		          
-		void setPassword(string password){
-            this->password.assign(password);
-        }//Set de la password
-             
-        string getPassword(){
-            return this->password;
-        }//Get de la password
-				        
-		void setRol(string rol){
-            this->rol.assign(rol);
-        }//Set del rol
-             
-        string getRol(){
-            return this->rol;
-        }//Get del rol
-		
-		void setCursadas(vector<Clase*>cursadas){
-            this->cursadas=cursadas;
-        }//Set de las clases cursadas
-             
-        void setClase(Clase*clase){
-            this->cursadas.push_back(clase);
-        }//Set de una sola clase a cursar
-             
-        vector<Clase*> getCursadas(){
-            return this->cursadas;
-        }//Get del vector de las cursadas
-        
-        void remClase(int p){
-        	cursadas.erase(cursadas.begin()+p);
-		}//Metodo que remueve una clase cursada		 
+        int getNivel(){
+            return nivel;
+        }//Get del nivel	 
 		              
         void print(){
-        	cout<<"Cuenta: "<<cuenta<<
-        	" Nombre del alumno: "<<nombre<<
-        	" Carrera: "<<carrera<<
-        	" Usuario: "<<usuario<<
-        	" Password: "<<password<<
-			" Rol: "<<rol<<endl;
+        	cout<<"Dinero: "<<dinero<<endl;
+        	cout<<"Vida: "<<vida<<endl;
+        	cout<<"Vida Maxima: "<<vida_maxima<<endl;
+        	cout<<"Nivel: "<<nivel<<endl;
 			cout<<"Clase cursadas"<<endl;
-			for(int i=0;i<cursadas.size();i++){
-        		cursadas.at(i)->print();
-			}//Fin del for de las computadoras
 			cout<<"\n\n\n\n";
-        }//Fin del metodo print 
+        }//Metodo print 
         
-        ~Alumno(){
-		}//Fin del destructor    
+        ~Jugador(){
+		}//Destructor   
 };
 #endif
