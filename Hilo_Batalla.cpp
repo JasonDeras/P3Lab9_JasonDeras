@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Hilo_Vida{
+class Hilo_Batalla{
 	
 	private:
 		
@@ -19,7 +19,7 @@ class Hilo_Vida{
 	
 	public:
 	
-		Hilo_Vida(){
+		Hilo_Batalla(){
 		}//Constructor simple
 
 		void setVive(bool vive){
@@ -38,18 +38,16 @@ class Hilo_Vida{
 		}//Detiene el hilo
 		
 		void run(){
-			_beginthread(&Hilo_Vida::runner,0,static_cast<void*>(this));
+			_beginthread(&Hilo_Batalla::runner,0,static_cast<void*>(this));
 		}//Metodo run
 		
 		static void runner(void *o){
-			static_cast<Hilo_Vida*>(o)->runnerEstatico();
+			static_cast<Hilo_Batalla*>(o)->runnerEstatico();
 		}//Metodo runner
 		
 		void runnerEstatico(){
 			
 			while(vive){
-				
-				MessageBox(0,texto.c_str(),"Advertencia",MB_OK);
 				
 				Sleep(espera);
 				
