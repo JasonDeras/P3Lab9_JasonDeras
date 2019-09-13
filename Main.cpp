@@ -1,98 +1,98 @@
-#include<iostream>
+#include <iostream>
 #include <string.h>
-#include<CONIO.H>
-#include "Jugador.cpp"
-#include "Hilo_Dinero.cpp"
+#include <conio.h>
 #include "Hilo_Vida.cpp"
 #include "Hilo_Batalla.cpp"
+#include "Hilo_Dinero.cpp"
 
 using namespace std;
+void Batalla();
 
 int main(){
-	
-	//Variable de control del nombre del jugador
+	//Variable del nombre
 	string nombre;
-	
 	cout<<"Ingrese su nombre: ";
 	cin>>nombre;
 	
-	//Creacion del jugador
-	Jugador jugador;
+	cout<<"\n\n\n";
+	//Instancia del jugador
+	Jugador*jugador=new Jugador();
 	
-	//Creacion del Hilo del dinero
-	Hilo_Dinero dinero;
-	dinero.setVive(true);
-	dinero.setTexto("Gano +1 de dinero");
-	dinero.setEspera(7000);
-	//dinero.run();
+	//Creacion del hilo de dinero
+	Hilo_Dinero h_dinero;
+	h_dinero.setVive(true);
+	h_dinero.setEspera(7000);
+	h_dinero.setJugador(jugador);
+	h_dinero.run();
 	
 	//Creacion del hilo de la vida
-	Hilo_Vida vida;
-	vida.setVive(true);
-	vida.setTexto("Gano +1 de vida");
-	vida.setEspera(6000);
-	//vida.run();
+	Hilo_Vida h_vida;
+	h_vida.setVive(true);
+	h_vida.setEspera(6000);
+	h_vida.setJugador(jugador);
+	h_vida.run();
 	
 	//Creacion del hilo de la batalla
-	Hilo_Batalla batalla;
-	batalla.setVive(true);
-	batalla.setTexto("Se encontro una batalla");
-	batalla.setEspera(10000);
-	batalla.run();
-
+	Hilo_Batalla h_batalla;
+	h_batalla.setVive(true);
+	h_batalla.setEspera(10000);
+	h_batalla.setJugador(jugador);
+	h_batalla.run();
+	
 	while(true){
-				
-		//Variable de control del menu
+		
+		system("cls");
+		cout<<"Menu\n\n\n";
+		cout<<"1. Datos del jugador\n\n";
+		cout<<"2. Curar vida\n\n";
+		cout<<"3. Salir\n\n";
+		
+		//Variable para controlar el menu
 		int op;
 		
-		cout<<"Menu\n\n\n";
-		cout<<"1. Ver datos\n\n";
-		cout<<"2. Curar un punto de vida<$1>\n\n";
-		cout<<"3. Salir\n\n\n";
 		cout<<"Ingrese una opcion: ";
-		cin>>op;
+		if(jugador->getPelear()==false){
+			cin>>op;
+		}else{
+			op=4;
+		}//If que valida si le toca pelear o no
 		cout<<"\n\n\n";
-		
-		if(dinero.getDinero()==1){
-			jugador.setDinero(jugador.getDinero()+1);
-			dinero.setDinero(0);
-		}//If auxilar de los datos del jugador
-		
-		if(vida.getVida()==1){
-			jugador.setVida(jugador.getVida()+1);
-			vida.setVida(0);
-		}//If auxilar de los datos del jugador
 		
 		switch(op){
 			
 			case 1:
-				jugador.print();
+				cout<<"Nivel: "<<jugador->getNivel()<<endl;
+				cout<<"Dinero: "<<jugador->getDinero()<<endl;
+				cout<<"Vida: "<<jugador->getVida()<<"/"<<jugador->getVida_Maxima()<<endl;
+				system("pause");
 			break;
 			
 			case 2:
-				if(jugador.getDinero()>0){
-					jugador.setVida(jugador.getVida()+1);
-					jugador.setDinero(jugador.getDinero()-1);	
-				}else{
-					cout<<"No tiene el dinero necesario para curar mas vida\n\n\n";
-				}//Fin del if para curar la vida del jugador	
+				jugador->comprarVida();
+				system("pause");
 			break;
 			
 			case 3:
+				cout<<"Sesion cerrada"<<endl;
+				jugador=NULL;
 				exit(0);
-				dinero.stop();
-				vida.stop();
+			break;
+			
+			case 4:
 			break;
 			
 			default:
-				cout<<"Opcion no valida\n\n";
-			break;
-			
-		}//Fin de las opciones del jugador
+				cout<<"Opcion no valida\n\n\n";
+			break;	
+		}//Fin de las opciones
 		
-	}//Fin repetitivo
+	}//Fin del while repetitivo
 	
 	return 0;
 	
 }//Fin del main
+
+void Batalla(){
+	
+}//Metodo para la batalla
 
